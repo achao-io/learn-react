@@ -15,3 +15,7 @@
 ## dice
 
 ![dice](public/dice.png)
+
+## traffic light
+
+![traffic-light](public/traffic-light.png)
