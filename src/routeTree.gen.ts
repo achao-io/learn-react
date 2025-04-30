@@ -11,12 +11,19 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TrafficLightImport } from './routes/traffic-light'
 import { Route as StopwatchImport } from './routes/stopwatch'
 import { Route as RockPaperScissorsImport } from './routes/rock-paper-scissors'
 import { Route as DiceImport } from './routes/dice'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const TrafficLightRoute = TrafficLightImport.update({
+  id: '/traffic-light',
+  path: '/traffic-light',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const StopwatchRoute = StopwatchImport.update({
   id: '/stopwatch',
@@ -74,6 +81,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StopwatchImport
       parentRoute: typeof rootRoute
     }
+    '/traffic-light': {
+      id: '/traffic-light'
+      path: '/traffic-light'
+      fullPath: '/traffic-light'
+      preLoaderRoute: typeof TrafficLightImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -84,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/dice': typeof DiceRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/stopwatch': typeof StopwatchRoute
+  '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRoutesByTo {
@@ -91,6 +106,7 @@ export interface FileRoutesByTo {
   '/dice': typeof DiceRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/stopwatch': typeof StopwatchRoute
+  '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRoutesById {
@@ -99,14 +115,26 @@ export interface FileRoutesById {
   '/dice': typeof DiceRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/stopwatch': typeof StopwatchRoute
+  '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dice' | '/rock-paper-scissors' | '/stopwatch'
+  fullPaths:
+    | '/'
+    | '/dice'
+    | '/rock-paper-scissors'
+    | '/stopwatch'
+    | '/traffic-light'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dice' | '/rock-paper-scissors' | '/stopwatch'
-  id: '__root__' | '/' | '/dice' | '/rock-paper-scissors' | '/stopwatch'
+  to: '/' | '/dice' | '/rock-paper-scissors' | '/stopwatch' | '/traffic-light'
+  id:
+    | '__root__'
+    | '/'
+    | '/dice'
+    | '/rock-paper-scissors'
+    | '/stopwatch'
+    | '/traffic-light'
   fileRoutesById: FileRoutesById
 }
 
@@ -115,6 +143,7 @@ export interface RootRouteChildren {
   DiceRoute: typeof DiceRoute
   RockPaperScissorsRoute: typeof RockPaperScissorsRoute
   StopwatchRoute: typeof StopwatchRoute
+  TrafficLightRoute: typeof TrafficLightRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -122,6 +151,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiceRoute: DiceRoute,
   RockPaperScissorsRoute: RockPaperScissorsRoute,
   StopwatchRoute: StopwatchRoute,
+  TrafficLightRoute: TrafficLightRoute,
 }
 
 export const routeTree = rootRoute
@@ -137,7 +167,8 @@ export const routeTree = rootRoute
         "/",
         "/dice",
         "/rock-paper-scissors",
-        "/stopwatch"
+        "/stopwatch",
+        "/traffic-light"
       ]
     },
     "/": {
@@ -151,6 +182,9 @@ export const routeTree = rootRoute
     },
     "/stopwatch": {
       "filePath": "stopwatch.tsx"
+    },
+    "/traffic-light": {
+      "filePath": "traffic-light.tsx"
     }
   }
 }

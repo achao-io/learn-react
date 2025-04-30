@@ -42,7 +42,7 @@ function RouteComponent() {
         ) {
             message = (
                 <>
-                    <Confetti numberOfPieces={400} />
+                    <Confetti numberOfPieces={400}/>
                     <PartyPopper className="size-12" />
                     <p>You Win!</p>
                 </>
@@ -69,7 +69,7 @@ function RouteComponent() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center gap-8 h-screen">    
+        <div className="flex flex-col items-center justify-center gap-8 h-screen text-blue-500">    
             {gameState === "playing" ? ( 
                 <>
                     <div className="flex items-center justify-center gap-8">
